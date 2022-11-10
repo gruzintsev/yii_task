@@ -1,0 +1,19 @@
+{
+    "name": "pls/challenge",
+    "type": "project",
+    "require": {
+        "dg/rss-php": "^1.5",
+        "yiisoft/yii": "^1.1",
+        "yiisoft/di": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "apps/pls/protected"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "yiisoft/yii2-composer": true
+        }
+    }
+}

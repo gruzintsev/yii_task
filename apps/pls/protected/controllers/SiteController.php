@@ -1,4 +1,8 @@
 <?php
+
+use App\Components\Feed\FeedConst;
+use App\Components\Feed\FeedInterface;
+
 /**
  * @class      SiteController
  *
@@ -82,7 +86,16 @@ class SiteController extends Controller {
 				$this->redirect(Yii::app()->user->returnUrl);
 			}
 		}
-		$this->render('login', ['model' => $model]);
+        /** @var FeedInterface $feedService */
+        $feedService = $this->container->get(FeedInterface::class);
+        $latestProduct = $feedService->fetchOne(FeedConst::FEED_TYPE_UPDATES);
+        $latestPost = $feedService->fetchOne(FeedConst::FEED_TYPE_BLOG);
+
+        $this->render('login', [
+            'model' => $model,
+            'latestProduct' => $latestProduct,
+            'latestPost' => $latestPost,
+        ]);
 	}
 
 	/**

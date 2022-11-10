@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(dirname(__DIR__)) . '/vendor/autoload.php');
+require_once(dirname(dirname(__DIR__)) . '/../../vendor/autoload.php');
 YiiBase::setPathOfAlias('protected', dirname(__DIR__));
 
 return [

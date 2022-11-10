@@ -1,5 +1,10 @@
 <?php
 
+use App\Components\Feed\FeedInterface;
+use App\Components\Feed\FeedService;
+use Yiisoft\Di\Container;
+use Yiisoft\Di\ContainerConfig;
+
 /**
  * @class      Controller
  *
@@ -26,5 +31,19 @@ class Controller extends CController {
 	 * be assigned to {@link CBreadcrumbs::links}.
 	 */
 	public $breadcrumbs = [];
+
+    public Container $container;
+
+    public function __construct($id, $module = null)
+    {
+        parent::__construct($id, $module);
+
+        $config = ContainerConfig::create()
+            ->withDefinitions([
+                FeedInterface::class => FeedService::class,
+            ]);
+
+        $this->container = new Container($config);
+    }
 
 }
